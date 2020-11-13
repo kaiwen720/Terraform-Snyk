@@ -59,7 +59,9 @@ resource "aws_security_group" "default" {
   name        = "terraform_example"
   description = "Used in the terraform"
   vpc_id      = aws_vpc.default.id
-  cidr_blocks = ["10.0.0.0/32"]
+  ingress {
+    cidr_blocks = ["10.0.0.0/24"]
+  }
 
   # SSH access from anywhere
   ingress {
