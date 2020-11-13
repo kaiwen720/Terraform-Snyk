@@ -88,7 +88,7 @@ resource "aws_security_group" "default" {
 
 resource "aws_elb" "web" {
   name = "terraform-example-elb"
-  
+  internal = true
 
   subnets         = [aws_subnet.default.id]
   security_groups = [aws_security_group.elb.id]
@@ -110,6 +110,7 @@ resource "aws_key_pair" "auth" {
 resource "aws_instance" "web" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
+  root_block_device.encrypted = true
   
   connection {
     type = "ssh"
