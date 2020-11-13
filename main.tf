@@ -88,7 +88,7 @@ resource "aws_security_group" "default" {
 
 resource "aws_elb" "web" {
   name = "terraform-example-elb"
-  internal = true
+  
 
   subnets         = [aws_subnet.default.id]
   security_groups = [aws_security_group.elb.id]
@@ -116,7 +116,7 @@ resource "aws_instance" "web" {
     # The default username for our AMI
     user = "ubuntu"
     host = self.public_ip
-    root_block_device.encrypted = true
+    
     # The connection will use the local SSH agent for authentication.
   }
 
