@@ -110,12 +110,13 @@ resource "aws_key_pair" "auth" {
 resource "aws_instance" "web" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
-  root_block_device.encrypted = true
+  
   connection {
     type = "ssh"
     # The default username for our AMI
     user = "ubuntu"
     host = self.public_ip
+    root_block_device.encrypted = true
     # The connection will use the local SSH agent for authentication.
   }
 
